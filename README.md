@@ -1,3 +1,13 @@
+---
+title: Task DADC
+emoji: 📊
+colorFrom: yellow
+colorTo: blue
+sdk: streamlit
+sdk_version: "1.45.1"
+app_file: app.py
+pinned: false
+---
 # Executive BI — Kitchen PNL Dashboard
 
 A Streamlit-powered executive dashboard for analyzing Profit & Loss data across cloud kitchen stores.
