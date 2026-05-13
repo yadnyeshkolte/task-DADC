@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive BI - PNL Dashboards</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#cfc6b2",
+                "primary-fixed": "#ffe085",
+                "on-tertiary": "#ffffff",
+                "primary-container": "#735c00",
+                "on-tertiary-fixed": "#111e1f",
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#e3c466",
+                "surface-bright": "#fff8f0",
+                "on-error": "#ffffff",
+                "surface-variant": "#e9e2d7",
+                "surface-container-high": "#eee7dc",
+                "tertiary-fixed-dim": "#bbc9ca",
+                "text-main": "#333333",
+                "on-tertiary-fixed-variant": "#3c494a",
+                "tertiary-fixed": "#d7e5e6",
+                "secondary-container": "#d1e4fb",
+                "secondary": "#4e6073",
+                "tertiary": "#3d494a",
+                "surface-container-highest": "#e9e2d7",
+                "inverse-on-surface": "#f7f0e5",
+                "surface-container": "#f4ede2",
+                "on-tertiary-container": "#cedcdc",
+                "background": "#fff8f0",
+                "secondary-fixed": "#d1e4fb",
+                "surface": "#FBF9F8",
+                "on-secondary-container": "#546679",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed": "#091d2d",
+                "on-error-container": "#93000a",
+                "on-surface": "#1e1b15",
+                "primary-fixed-dim": "#e3c466",
+                "on-primary-fixed": "#231b00",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "surface-tint": "#735c00",
+                "border-subtle": "#E9ECEF",
+                "secondary-fixed-dim": "#b6c8de",
+                "tertiary-container": "#546162",
+                "well-background": "#F8F9FA",
+                "on-surface-variant": "#4c4637",
+                "inverse-surface": "#333029",
+                "on-primary-fixed-variant": "#574500",
+                "surface-container-low": "#faf3e8",
+                "on-primary-container": "#f6d676",
+                "surface-dim": "#e0d9ce",
+                "primary": "#574500",
+                "on-secondary-fixed-variant": "#37485b",
+                "on-secondary": "#ffffff",
+                "primary-accent": "#D4AF37",
+                "on-background": "#1e1b15",
+                "outline": "#7e7665"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "xs": "8px",
+                "sm": "12px",
+                "md": "20px",
+                "gutter": "24px",
+                "margin": "32px",
+                "lg": "32px",
+                "base": "4px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "body-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "display": [
+                        "Manrope"
+                ],
+                "data-tabular": [
+                        "Inter"
+                ],
+                "h2": [
+                        "Manrope"
+                ],
+                "h1": [
+                        "Manrope"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "label-caps": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "data-tabular": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "h2": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h1": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom range slider styling */
+        input[type=range]::-webkit-slider-thumb {
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            -webkit-appearance: none;
+            background-color: #ef4444; /* red-500 */
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.3); /* red halo */
+        }
+        input[type=range]::-moz-range-thumb {
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            appearance: none;
+            background-color: #ef4444;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.3);
+            border: none;
+        }</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest text-primary font-label-caps text-label-caps fixed top-0 w-full z-50 border-b border-border-subtle">
+<div class="flex justify-between items-center h-16 px-margin max-w-full mx-auto">
+<div class="flex items-center gap-gutter">
+<span class="font-display text-h1 text-primary-accent">Executive BI</span>
+<div class="flex gap-lg h-full items-end">
+<button class="text-text-main font-bold border-b-[3px] border-primary-accent pb-1 cursor-pointer transition-opacity" id="tab-kitchen" onclick="switchTab('dashboard-1', 'tab-kitchen')">Kitchen Level PNL</button>
+<button class="text-on-surface-variant pb-1 hover:text-text-main transition-colors duration-200 cursor-pointer border-b-[3px] border-transparent" id="tab-variance" onclick="switchTab('dashboard-2', 'tab-variance')">VARIANCE Level PNL</button>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Executive User Profile" class="w-8 h-8 rounded-full ml-sm border border-border-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkoi7NuIL-OEtCix09ZIUPWq40MQDhJg2I7zs1svPll6AL1cH5f6YFlzXmIt2uYrrCM6iSQ3sgPCjuTp2Sn6_4ipSU4Hwi-2aJbXpcZlE_XST6ukhocLgHZCxqTb9j3-MJl0kflF9y-ws0siL2QYpIDtJ-s2IcWIUAajwG7UvH4wM6pzPUHMpWWNFCKabBFBCnYNtmJkVSRDFsyJQkEA0VmRHweLNzeFAr7jj5PIdvkm0kHx5ZNwnvigqO8vId8ZEJ0hcNVTocHgw"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin pb-xl max-w-full mx-auto flex items-start gap-gutter">
+<!-- Dashboard 1: Kitchen Level PNL -->
+<div class="block w-full" id="dashboard-1">
+<h1 class="font-display text-[28px] font-bold text-text-main mb-lg">1. Kitchen Level PNL -</h1>
+<!-- Top Section: Range Sliders -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
+<!-- Slider 1 -->
+<div class="flex flex-col gap-sm">
+<label class="font-body-md text-text-main">Select EBITDA Range (in ₹)</label>
+<div class="relative pt-6 pb-2">
+<!-- Values above handles -->
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 15%; transform: translateX(-50%);">-85403</div>
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 45%; transform: translateX(-50%);">1100121</div>
+<div class="relative bg-surface-variant rounded-full">
+<!-- Track filled part -->
+<div class="absolute h-full rounded-full bg-red-500" style="left: 15%; right: 55%;"></div>
+<!-- Inputs -->
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="2834680" min="-585850" type="range" value="-85403"/>
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="2834680" min="-585850" type="range" value="1100121"/>
+</div>
+<!-- Min/Max labels -->
+<div class="flex justify-between mt-sm text-text-main font-data-tabular text-body-md">
+<span>-585850</span>
+<span>2834680</span>
+</div>
+</div>
+</div>
+<!-- Slider 2 -->
+<div class="flex flex-col gap-sm">
+<label class="font-body-md text-text-main">Select Contribution Margin (CM) Range (%)</label>
+<div class="relative pt-6 pb-2">
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 30%; transform: translateX(-50%);">15%</div>
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 80%; transform: translateX(-50%);">45%</div>
+<div class="relative bg-surface-variant rounded-full">
+<div class="absolute h-full rounded-full bg-red-500" style="left: 30%; right: 20%;"></div>
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="100" min="0" type="range" value="15"/>
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="100" min="0" type="range" value="45"/>
+</div>
+<div class="flex justify-between mt-sm text-text-main font-data-tabular text-body-md">
+<span>0%</span>
+<span>100%</span>
+</div>
+</div>
+</div>
+<!-- Slider 3 -->
+<div class="flex flex-col gap-sm">
+<label class="font-body-md text-text-main">Select Revenue Range (in ₹)</label>
+<div class="relative pt-6 pb-2">
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 20%; transform: translateX(-50%);">100k</div>
+<div class="absolute top-0 font-data-tabular text-body-md text-red-500" style="left: 70%; transform: translateX(-50%);">500k+</div>
+<div class="relative bg-surface-variant rounded-full">
+<div class="absolute h-full rounded-full bg-red-500" style="left: 20%; right: 30%;"></div>
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="100" min="0" type="range" value="20"/>
+<input class="absolute w-full -top-2.5 appearance-none bg-transparent pointer-events-none" max="100" min="0" type="range" value="70"/>
+</div>
+<div class="flex justify-between mt-sm text-text-main font-data-tabular text-body-md">
+<span>0</span>
+<span>1M+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Bar Area -->
+<div class="bg-surface-container-lowest border-t-4 border-t-primary-accent border border-border-subtle p-md mb-lg">
+<!-- Row 1 -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-md">
+<input class="border border-[#4c8f50] rounded-sm py-sm px-md focus:outline-none" type="text"/>
+<div class="relative">
+<select class="w-full appearance-none bg-[#fdead6] text-text-main font-body-md rounded-sm py-sm px-md pr-8 border-none focus:ring-0">
+<option>Zone</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-text-main" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="w-full appearance-none bg-[#fdead6] text-text-main font-body-md rounded-sm py-sm px-md pr-8 border-none focus:ring-0">
+<option>EBITDA category</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-text-main" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md items-center">
+<div class="font-h2 text-h2 font-bold text-text-main">KITCHEN SNAPSHOT</div>
+<div class="relative">
+<select class="w-full appearance-none bg-[#fdead6] text-text-main font-body-md rounded-sm py-sm px-md pr-8 border-none focus:ring-0">
+<option>Store</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-text-main" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="w-full appearance-none bg-[#fdead6] text-text-main font-body-md rounded-sm py-sm px-md pr-8 border-none focus:ring-0">
+<option>Month</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-text-main" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="w-full appearance-none bg-[#fdead6] text-text-main font-body-md rounded-sm py-sm px-md pr-8 border-none focus:ring-0">
+<option>Revenue category</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-text-main" style="font-size: 16px;">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest border border-border-subtle overflow-hidden">
+<!-- Table Header with Black Bar -->
+<div class="h-6 bg-black w-full"></div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<!-- Super Header Row -->
+<tr class="border-b border-border-subtle text-text-main font-body-sm">
+<th class="p-xs"></th>
+<th class="p-xs text-center border-l border-border-subtle" colspan="5">Mar 1, 2025</th>
+<th class="p-xs text-center border-l border-border-subtle" colspan="5">Feb 1, 2025</th>
+</tr>
+<!-- Column Header Row -->
+<tr class="border-b border-border-subtle font-body-sm text-text-main">
+<th class="p-xs font-normal border-r border-border-subtle min-w-[150px]">Store</th>
+<th class="p-xs font-normal">Net reven...</th>
+<th class="p-xs font-normal">GM %</th>
+<th class="p-xs font-normal">CM %</th>
+<th class="p-xs font-normal">EBITDA</th>
+<th class="p-xs font-normal border-r border-border-subtle relative">EBITDA %
+                        <span class="material-symbols-outlined absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer" style="font-size: 14px;">refresh</span>
+</th>
+<th class="p-xs font-normal">Net reven...</th>
+<th class="p-xs font-normal">GM %</th>
+<th class="p-xs font-normal">CM %</th>
+<th class="p-xs font-normal">EBITDA</th>
+<th class="p-xs font-normal">EBITDA %</th>
+</tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular text-text-main h-64 border-b border-t border-[#4c8f50]">
+<!-- Empty state matching screenshot -->
+<tr>
+<td colspan="11"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Dashboard 2: VARIANCE Level PNL -->
+<div class="hidden w-full relative" id="dashboard-2">
+<!-- Main Content Area -->
+<div class="w-full pr-[300px]">
+<h1 class="font-h1 text-[22px] font-bold text-text-main uppercase mb-xs">VARIANCE BY REVENUE CATEGORY</h1>
+<p class="font-body-sm text-text-main mb-lg max-w-4xl">The tables below summarise the average variance % on cart of the kitchens under revenue categories and the count of kitchen under each revenue category to further drill down on the variance category</p>
+<!-- Table 1 -->
+<div class="bg-surface-container-lowest border border-border-subtle mb-lg">
+<div class="h-6 bg-black w-full"></div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="border-b border-border-subtle font-body-sm text-text-main">
+<th class="p-xs font-normal border-r border-border-subtle min-w-[200px]">
+<span class="inline-flex items-center justify-center border border-border-subtle w-4 h-4 mr-1 text-xs cursor-pointer">+</span> Revenue category
+                            </th>
+<th class="p-xs font-normal text-center">Mar 2025</th>
+<th class="p-xs font-normal text-center">Feb 2025</th>
+<th class="p-xs font-normal text-center">Jan 2025</th>
+<th class="p-xs font-normal text-center">Dec 2024</th>
+<th class="p-xs font-normal text-center">Nov 2024</th>
+<th class="p-xs font-normal text-center">Oct 2024</th>
+<th class="p-xs font-normal text-center">Sep 2024</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-text-main border-l border-r border-[#4c8f50]">
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(a) Below INR 15 lacs</td>
+<td class="p-xs text-center" colspan="7" rowspan="5">
+<!-- Empty area corresponding to green box in screenshot -->
+</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(b) INR 15 to 25 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(c) INR 25 to 35 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(d) INR 35 to 45 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(e) Above INR 45 lacs</td>
+</tr>
+</tbody>
+<tfoot class="font-data-tabular font-bold text-text-main bg-well-background">
+<tr>
+<td class="p-xs border-r border-border-subtle">Grand total</td>
+<td class="p-xs text-center">1.3%</td>
+<td class="p-xs text-center">1.5%</td>
+<td class="p-xs text-center">1.9%</td>
+<td class="p-xs text-center">1.3%</td>
+<td class="p-xs text-center">1.6%</td>
+<td class="p-xs text-center">1.3%</td>
+<td class="p-xs text-center">1.5%</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Table 2 -->
+<div class="bg-surface-container-lowest border border-border-subtle">
+<div class="h-6 bg-black w-full"></div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="border-b border-border-subtle font-body-sm text-text-main">
+<th class="p-xs font-normal border-r border-border-subtle min-w-[200px]">
+<span class="inline-flex items-center justify-center border border-border-subtle w-4 h-4 mr-1 text-xs cursor-pointer">+</span> Revenue category
+                            </th>
+<th class="p-xs font-normal text-center">Mar 2025</th>
+<th class="p-xs font-normal text-center">Feb 2025</th>
+<th class="p-xs font-normal text-center">Jan 2025</th>
+<th class="p-xs font-normal text-center">Dec 2024</th>
+<th class="p-xs font-normal text-center">Nov 2024</th>
+<th class="p-xs font-normal text-center">Oct 2024</th>
+<th class="p-xs font-normal text-center">Sep 2024</th>
+<th class="p-xs font-normal text-center">Aug 2024</th>
+<th class="p-xs font-normal text-center">Jul 2024</th>
+<th class="p-xs font-normal text-center">Jun 2024</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-text-main border-l border-r border-[#4c8f50]">
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(a) Below INR 15 lacs</td>
+<td class="p-xs text-center" colspan="10" rowspan="5">
+<!-- Empty area corresponding to green box in screenshot -->
+</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(b) INR 15 to 25 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(c) INR 25 to 35 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(d) INR 35 to 45 lacs</td>
+</tr>
+<tr class="border-b border-border-subtle">
+<td class="p-xs border-r border-border-subtle">(e) Above INR 45 lacs</td>
+</tr>
+</tbody>
+<tfoot class="font-data-tabular font-bold text-text-main bg-well-background">
+<tr>
+<td class="p-xs border-r border-border-subtle">Grand total</td>
+<td class="p-xs text-center">353</td>
+<td class="p-xs text-center">351</td>
+<td class="p-xs text-center">350</td>
+<td class="p-xs text-center">346</td>
+<td class="p-xs text-center">340</td>
+<td class="p-xs text-center">336</td>
+<td class="p-xs text-center">338</td>
+<td class="p-xs text-center">337</td>
+<td class="p-xs text-center">336</td>
+<td class="p-xs text-center">336</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<!-- Floating Right Menu -->
+<div class="absolute right-0 top-0 w-[280px] bg-[#fdf2c8] border border-border-subtle shadow-md z-10 min-h-[400px]">
+<div class="p-sm flex justify-between items-center">
+<span class="font-body-md text-text-main font-medium">Variance category (1)</span>
+</div>
+<div class="px-sm mb-sm relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+<input class="w-full bg-transparent border-none pl-8 py-1 focus:ring-0 text-body-sm" placeholder="Type to search" type="text"/>
+</div>
+<div class="flex flex-col px-sm gap-y-2 pb-sm">
+<div class="flex items-center gap-xs">
+<div class="w-4 h-4 bg-orange-400 rounded-sm flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white" style="font-size: 12px; font-weight: bold;">check</span>
+</div>
+<label class="font-body-sm text-text-main cursor-pointer">(a) Var &lt; 2%</label>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-4 h-4 bg-orange-400 rounded-sm flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white" style="font-size: 12px; font-weight: bold;">check</span>
+</div>
+<label class="font-body-sm text-text-main cursor-pointer flex-1">(b) Var 2% to 3%</label>
+<button class="bg-[#f5e3a3] border border-transparent text-text-main font-label-caps text-[9px] px-2 py-0.5 rounded cursor-pointer hover:bg-[#ebd582]">ONLY</button>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-4 h-4 bg-orange-400 rounded-sm flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white" style="font-size: 12px; font-weight: bold;">check</span>
+</div>
+<label class="font-body-sm text-text-main cursor-pointer">(c) Var 3% to 5%</label>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function switchTab(dashboardId, tabId) {
+            // Hide all dashboards
+            document.getElementById('dashboard-1').classList.add('hidden');
+            document.getElementById('dashboard-1').classList.remove('block');
+            document.getElementById('dashboard-2').classList.add('hidden');
+            document.getElementById('dashboard-2').classList.remove('block');
+
+            // Show selected dashboard
+            document.getElementById(dashboardId).classList.remove('hidden');
+            document.getElementById(dashboardId).classList.add('block');
+
+            // Reset tab styles
+            const tabKitchen = document.getElementById('tab-kitchen');
+            const tabVariance = document.getElementById('tab-variance');
+            
+            // Inactive styles
+            const inactiveClasses = ['text-on-surface-variant', 'border-transparent'];
+            const activeClasses = ['text-text-main', 'font-bold', 'border-primary-accent'];
+
+            tabKitchen.classList.remove(...activeClasses);
+            tabKitchen.classList.add(...inactiveClasses);
+            
+            tabVariance.classList.remove(...activeClasses);
+            tabVariance.classList.add(...inactiveClasses);
+
+            // Set active styles
+            const activeTab = document.getElementById(tabId);
+            activeTab.classList.remove(...inactiveClasses);
+            activeTab.classList.add(...activeClasses);
+        }
+    </script>
+</body></html>
